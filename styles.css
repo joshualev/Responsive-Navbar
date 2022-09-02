@@ -15,9 +15,9 @@ body {
 /* Navbar Logo */
 .logo {
   display: flex;
-  margin: 2rem;
+  margin: 2rem ;
 
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -25,7 +25,6 @@ body {
 .primary-navigation {
   display: flex;
   gap: 3rem;
-
   padding: 1rem;
   border-radius: 5px;
 
@@ -35,6 +34,8 @@ body {
     /* ^ apply graphical blur to area behind transparent element */
   list-style: none;
     /* ^ Remove default bullet points from li  */
+  
+  transition: 350ms ease-out;
 }
 
   /* Supports */
@@ -54,14 +55,31 @@ body {
   }
 
 
+/* Hamburger menu */
+.mobile-nav-toggle {
+  display: none;
+  /* ^ set to display none for default */
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+  .primary-navigation {
+    font-size: 1.75em;
+  }
+  .logo{
+    font-size: 2.5em;
+  } 
+}
 
 /* Medium + Screens */
 @media (min-width: 660px){
   .primary-navigation {
+    font-size: 1.1em;
     gap: clamp(1.5rem, 5vw, 10rem); 
       /* ^ adjust gap as per screen size */
       /* ^ clamp(MIN value(1.5rem), INCREASE By(5vw), Max value (10rem)*/
   }
+
 }
 
 /* Small Screens */
@@ -76,15 +94,64 @@ body {
     inset: 0 0 0 30%; 
       /* ^ take up 70% of the screen */
       /* ^ distance away from (top bottom left right) */ 
-    padding: min(5vh, 10rem) 2em;
-    /* ^ Chooses the minimum padding-top value depending on screen size */
-    /* ^ Used to prevent overflow */
+    padding: min(10vh, 10rem) 3em;
+      /* ^ Chooses the minimum padding-top value depending on screen size */
+      /* ^ Used to prevent overflow */
     gap: 2em;
+
+    transition: 350ms ease-out;
+    
+    transform: translateX(0%);
+
+  }
+
+  .hidden {
+    /* display: none; */
+    transform: translateX(100%);
+  }
+
+  .active-menu {
+    background: url('./assets/close-nav-menu.svg');
+    
+  }
+
+  .expand-menu {
+    background: url('./assets/expand-nav-menu.svg');
+
+  }
+  
+
+  /* Hamburger menu toggle */
+  .mobile-nav-toggle{
+    background-repeat: no-repeat;
+      /* Remove repeat duplicates of SVG */
+    border: none;
+      /* ^ remove border from SVG */
+    width: 3em;
+    aspect-ratio: 1;
+      /* ^ Match height to width 1:1 */
+
+    display: block;
+    /* ^ Show, as display none is set for bigger screens */
+    position: absolute;
+      /* ^ Freedom to manipulate position independantly*/
+    z-index: 1000;
+      /* ^ Bring to absolute top, prevent it from being hidden */
+    
+    top: 2.3rem;
+    right: 2rem;
+    /* ^ Position to be over NavLink container*/
+
+    cursor: pointer;
+
+    transition: 350ms ease-out;
+   
+    
   }
 }
 
 /* Very Small Screens */
-@media (max-width: 440px){
+@media (max-width: 450px){
   .primary-navigation {
     inset: 0 0 0 0%; 
     /* ^ Navbar to take up full screen */
@@ -92,7 +159,10 @@ body {
     /* ^ Center all elements */
     padding: min(20vh, 10rem) 2em;
     gap: 3rem;
-    /* ^ Increase gap by 1rem */
+  }
+  .mobile-nav-toggle{
+    right: 2rem;
+
   }
 }
 
