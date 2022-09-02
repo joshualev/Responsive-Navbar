@@ -1,0 +1,28 @@
+body {
+  background-color: #252221;
+  color: whitesmoke;
+}
+
+.primary-header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.primary-navigation {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+
+}
+
+a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
