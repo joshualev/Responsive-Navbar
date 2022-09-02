@@ -3,26 +3,96 @@ body {
   color: whitesmoke;
 }
 
+/* Primary-Header */
 .primary-header {
  display: flex;
  align-items: center;
- justify-content: space-between;
+  /* ^ Aligns all elements (logo/NavLinks) in line and in center */
+ justify-content: space-between; 
+  /* ^ flexes nav links to end of screen */
 }
 
+/* Navbar Logo */
 .logo {
-  font-size: 1.7rem;
+  display: flex;
+  margin: 2rem;
+
+  font-size: 1.75rem;
   font-weight: 700;
 }
 
+/* Primary Navigation (ul) */
 .primary-navigation {
-  list-style: none;
   display: flex;
   gap: 3rem;
 
+  padding: 1rem;
+  border-radius: 5px;
+
+  background-color: rgba(255,255,255,0.05);  
+    /* ^ Give transparancy to navlink container */
+  backdrop-filter: blur(1rem); 
+    /* ^ apply graphical blur to area behind transparent element */
+  list-style: none;
+    /* ^ Remove default bullet points from li  */
 }
 
-a {
-  text-decoration: none;
-  color: whitesmoke;
+  /* Supports */
+  @supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+      background-color: rgba(255,255,255,0.05);
+      backdrop-filter: blur(1rem);
+        /* ^ IF browser supports backdrop-filter use this */
+        /* ^ ELSE default to above standard .primary-navigation */
+    }
+  }
+
+  /* Navigation Links */
+  a {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+
+
+
+/* Medium + Screens */
+@media (min-width: 660px){
+  .primary-navigation {
+    gap: clamp(1.5rem, 5vw, 10rem); 
+      /* ^ adjust gap as per screen size */
+      /* ^ clamp(MIN value(1.5rem), INCREASE By(5vw), Max value (10rem)*/
+  }
+}
+
+/* Small Screens */
+@media (max-width: 660px){
+  .primary-navigation {
+    flex-direction: column;
+      /* ^ Stack NavLinks in a column */
+    position: fixed;
+      /* ^ Prevent overflow and crowding with other elements */
+    z-index: 100;
+      /* ^ Bring to top */
+    inset: 0 0 0 30%; 
+      /* ^ take up 70% of the screen */
+      /* ^ distance away from (top bottom left right) */ 
+    padding: min(5vh, 10rem) 2em;
+    /* ^ Chooses the minimum padding-top value depending on screen size */
+    /* ^ Used to prevent overflow */
+    gap: 2em;
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 440px){
+  .primary-navigation {
+    inset: 0 0 0 0%; 
+    /* ^ Navbar to take up full screen */
+    align-items: center;
+    /* ^ Center all elements */
+    padding: min(20vh, 10rem) 2em;
+    gap: 3rem;
+    /* ^ Increase gap by 1rem */
+  }
 }
 
